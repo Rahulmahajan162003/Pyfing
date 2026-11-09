@@ -1,0 +1,2 @@
+image_id,id,x,y,direction,direction_deg,type,confidence,source,verification_status
+IMG_20261106_160111,1,2873.050512314625,5597.149253302869,-1.7359450042095235,260.5376777919744,RIG,0.3379461771664832,PYFING_SBMEX,auto_unverified

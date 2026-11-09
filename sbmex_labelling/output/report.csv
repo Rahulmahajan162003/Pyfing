@@ -1,0 +1,2 @@
+image_id,ridge_period_px,fft_peak_strength,black_pixel_fraction_inside_mask,snffe_period_at_500dpi,total_minutiae,RIG,BIF,flags
+IMG_20261106_160109,32.44983379052004,28.20657559598577,0.34296048910765864,6.514316082000732,2,1,1,RIDGE_PERIOD_ABOVE_25PX_THRESHOLD_WINDOW;SNFFE_PERIOD_OUTSIDE_8_11_5PX

@@ -1,0 +1,111 @@
+# pyfing - Fingerprint recognition in Python
+
+Simple but effective methods for fingerprint recognition.
+
+## Getting Started
+
+### Installation
+You can install the library via pip (make sure Keras 3, TensorFlow, and OpenCV are already installed):
+
+```bash
+pip install pyfing
+```
+
+### Quick Example
+The following example shows how to load an image, segment it, estimate orientation and frequency, enhance the image, and finally extract minutiae:
+
+```Python
+import cv2 as cv
+import pyfing as pf
+
+# Load the fingerprint image in grayscale
+fingerprint = cv.imread('fingerprint.png', cv.IMREAD_GRAYSCALE)
+
+# Segmentation and feature extraction
+segmentation_mask = pf.fingerprint_segmentation(fingerprint)
+orientations = pf.orientation_field_estimation(fingerprint, segmentation_mask)
+frequencies = pf.frequency_estimation(fingerprint, orientations, segmentation_mask)
+
+# Image enhancement
+enhanced_image = pf.fingerprint_enhancement(fingerprint, orientations, frequencies, segmentation_mask, method="GBFEN")
+
+# Minutiae detection
+minutiae = pf.minutiae_extraction(enhanced_image, method="SBMEX", segmentation_mask=segmentation_mask)
+
+# End-to-end minutiae extraction (Note: this method does not require previous steps)
+minutiae = pf.minutiae_extraction(fingerprint)
+```
+
+## License
+The code, pre-trained model weights, and documentation in this repository are licensed under the [MIT License](LICENSE).
+
+## Citing pyfing
+If you use `pyfing` in your research, please cite the core library and the specific papers corresponding to the methods you use in your pipeline. For example, if you use **GMFS** for segmentation and **LEADER** for minutiae extraction, please cite [2] and [10].
+
+---
+## Available methods
+Below you can find an overview of the different methods available in pyfing for each step of the fingerprint recognition pipeline.
+
+### Fingerprint segmentation
+The following segmentation methods are available:
+- GMFS (Gradient-Magnitude Fingerprint Segmentation): straightforward yet effective approach, achieving superior performance compared to previously reported traditional (non deep-learning-based) methods. Its average error rate on the FVC segmentation benchmark \[1\] is 2.98%.
+- SUFS (Simplified U-net Fingerprint Segmentation): method based on a simplified U-net architecture that surpasses all previous methods evaluated on the FVC segmentation benchmark \[1\]. Its average error rate on the benchmark is 1.51%.
+
+See \[2\] for a complete description of the two segmentation methods.
+
+
+### Fingerprint orientation field estimation
+The following orientation field estimation methods are available:
+- GBFOE (Gradient-Based Fingerprint Orientation Estimation): a simple fingerprint orientation estimation method based on traditional image processing techniques with minimal computational resource requirements that achieves performance comparable to much more complex methods. It achieves an average error of 5.30° and 14.40° on the "good" and "bad" datasets of the FOE-STD-1.0 benchmark \[3\], respectively.
+- SNFOE (Simple Network for Fingerprint Orientation Estimation): learning-based fingerprint orientation estimation method that surpasses all previous methods evaluated on public benchmarks and can deal both with plain fingerprints acquired through online sensors, and with latent fingerprints, without requiring any fine-tuning. It achieves an average error of 4.30° and 6.37° on the "good" and "bad" datasets of the FOE-STD-1.0 benchmark \[3\], respectively.
+
+See \[4\] for a complete description of the two orientation field estimation methods.
+
+
+### Fingerprint frequency estimation
+The following frequency estimation methods are available:
+- XSFFE (X-Signature-based Fingerprint Frequency Estimation): a simple fingerprint frequency estimation method based on traditional image processing techniques and on the computation of the x-signature. It achieves an average error of 5.10% and 7.84%	on the "good" and "bad" datasets of the FFE benchmark \[5\], respectively.
+- SNFFE (Simple Network for Fingerprint Frequency Estimation): learning-based fingerprint frequency estimation method that surpasses all previous methods evaluated on the FFE benchmark. It achieves an average error of 3.62% and 6.69%	on the "good" and "bad" datasets of the FFE benchmark \[5\], respectively.
+
+See \[6\] for a complete description of the two frequency estimation methods.
+
+
+### Fingerprint enhancement
+The following enhancement methods are available:
+- GBFEN (Gabor-Based Fingerprint ENhancement): a simple fingerprint enhancement method based on traditional contextual convolution with Gabor filters. Combined with SNFOE and SNFFE, it surpasses the performance of state-of-the-art methods on the challenging NIST SD27 latent fingerprint database \[7]\.
+- SNFEN (Simple Network for Fingerprint ENhancement): learning-based fingerprint enhancement method that achieves even better results while maintaining simplicity,
+linearity, and ease of implementation.
+
+See \[8\] for a complete description of the two fingerprint enhancement methods.
+
+
+### Minutiae extraction
+The following minutia extraction method are available:
+- SBMEX (Skeleton-Based Minutia EXtraction): a simple traditional method based on Crossing Number computation from ridge and valley skeletons. SBMEX takes an enhanced fingerprint image and its segmentation mask as input. Its performance is aligned with legacy traditional baselines (MINDTCT, FingerJet) \[9\].
+- LEADER (Lightweight End-to-end Attention-gated Dual Encoder-decodeR): a neural network that maps raw fingerprint images to minutiae descriptors, including location, direction, and type. With only 0.9 M parameters, it achieves state-of-the-art accuracy on plain fingerprints and robust cross-domain generalization to latent impressions \[10\].
+
+
+## References
+\[1\] D. H. Thai, S. Huckemann and C. Gottschlich, "Filter Design and Performance Evaluation for Fingerprint Image Segmentation," PLOS ONE, vol. 11, pp. 1-31, May 2016.
+
+\[2\] R. Cappelli, "Unveiling the Power of Simplicity: Two Remarkably Effective Methods for Fingerprint Segmentation," in IEEE Access, vol. 11, pp. 144530-144544, 2023, [doi: 10.1109/ACCESS.2023.3345644](https://doi.org/10.1109/ACCESS.2023.3345644).
+
+\[3\] FOE benchmarks on FVC-onGoing, [https://biolab.csr.unibo.it/fvcongoing/UI/Form/BenchmarkAreas/BenchmarkAreaFOE.aspx](https://biolab.csr.unibo.it/fvcongoing/UI/Form/BenchmarkAreas/BenchmarkAreaFOE.aspx).
+
+\[4\] R. Cappelli, "Exploring the Power of Simplicity: A New State-of-the-Art in Fingerprint Orientation Field Estimation," in IEEE Access, vol. 12, pp. 55998-56018, 2024, [doi: 10.1109/ACCESS.2024.3389701](https://doi.org/10.1109/ACCESS.2024.3389701).
+
+\[5\] FFE Benchmark, [https://github.com/raffaele-cappelli/FFE](https://github.com/raffaele-cappelli/FFE).
+
+\[6\] R. Cappelli, "No Feature Left Behind: Filling the Gap in Fingerprint Frequency Estimation," in IEEE Access, vol. 12, pp. 153605-153617, 2024, [doi: 10.1109/ACCESS.2024.3481507](https://doi.org/10.1109/ACCESS.2024.3481507).
+
+\[7\] M. D. Garris and R. M. McCabe, NIST Special Database 27: Fingerprint Minutiae from Latent and Matching Tenprint Images, 2000.
+
+\[8\] R. Cappelli, "Unleashing the Power of Simplicity: A Minimalist Strategy for State-of-the-Art Fingerprint Enhancement", 2026, arXiv preprint arXiv:2603.19004. [https://arxiv.org/abs/2603.19004](https://arxiv.org/abs/2603.19004).
+
+\[9\] R. Cappelli, "Revisiting Handcrafted Minutiae Detection: A Simple and Effective Open Source Baseline for
+Modern Fingerprint Workflows", 2026, arXiv preprint:2610.11641. [http://arxiv.org/abs/2610.11641](http://arxiv.org/abs/2610.11641)
+
+\[10\] R. Cappelli and M. Ferrara, "LEADER: Lightweight End-to-End Attention-Gated Dual Encoder-Decoder Network for Robust Minutiae Extraction," in IEEE Transactions on Information Forensics and Security, doi: [10.1109/TIFS.2026.3746873](https://doi.org/10.1109/TIFS.2026.3746873).
+
+
+

@@ -1,0 +1,78 @@
+{
+  "image_id": "IMG_20261106_160115",
+  "source_photo": "D:\\pyfing_SBMEX\\liveness\\IMG_20261106_160115.jpg",
+  "image_size": [
+    6144,
+    8192
+  ],
+  "model": "pyfing 0.7.3 SBMEX",
+  "pyfing_commit": "df4c0f0d19fd1d8befd9fc0615b71d48d784df03",
+  "keras_backend": "tensorflow",
+  "model_provenance": "public equivalent of our team's model (may differ)",
+  "sbmex_parameters": {
+    "binarization_threshold": 0,
+    "minimum_background_distance": 10,
+    "minimum_tracking_distance": 5,
+    "maximum_tracking_distance": 20,
+    "detection_method": "Merge",
+    "merge_max_distance": 6,
+    "merge_max_direction_difference": 0.5235987755982988,
+    "unpaired_minutiae_penalty": 0.5,
+    "valley_minutiae_correction": 3,
+    "minutiae_cluster_sigma": 11,
+    "minutiae_decay_base": 0.5,
+    "minutia_quality_threshold": 0.3
+  },
+  "segmentation": "pyfing SUFS",
+  "preprocessing": {
+    "script": "preprocess_fingerprint.py",
+    "slap_normalize": false,
+    "model_provenance": "public equivalent of our team's model (may differ)",
+    "info": {
+      "luminance": 228.58,
+      "enhancement": "histogram_equalization",
+      "segmented_fraction": 0.2112,
+      "output_width": 6144,
+      "output_height": 8192,
+      "image_id": "IMG_20261106_160115",
+      "source_photo": "D:\\pyfing_SBMEX\\liveness\\IMG_20261106_160115.jpg",
+      "original_size": [
+        6144,
+        8192
+      ],
+      "processed_size": [
+        6144,
+        8192
+      ],
+      "seconds": 2.651,
+      "slap_normalize": false,
+      "model_provenance": "public equivalent of our team's model (may differ)",
+      "u2net_model": "public equivalent of our team's model (may differ)",
+      "zero_dce_model": "public equivalent of our team's model (may differ)",
+      "black_pixel_fraction_inside_mask": 0.3442524773026052,
+      "ridge_period": {
+        "block_size": 64,
+        "valid_blocks": 35,
+        "period_small_px": 7.490633420552356,
+        "fft_peak_strength": 34.39080407531342,
+        "scale_factor": 0.1953125,
+        "ridge_period_px": 38.35204311322806
+      },
+      "processed_file": "work\\processed\\IMG_20261106_160115.png",
+      "mask_file": "work\\masks\\IMG_20261106_160115.png",
+      "center_crop_file": "work\\debug\\IMG_20261106_160115_crop.png"
+    }
+  },
+  "ridge_period_px": 38.35204311322806,
+  "scale_to_500dpi": 0.24770518670811933,
+  "snffe_period_at_500dpi": 6.278875350952148,
+  "snffe_warning": null,
+  "coordinates": "pixels of the original photo (= processed image), origin top-left",
+  "polarity_check": {
+    "passed": true,
+    "black_ridges_inside_segmentation": 216628,
+    "white_sbmex_pixels_inside_segmentation": 216628
+  },
+  "minutiae": [],
+  "labeling_seconds": 2482.473
+}

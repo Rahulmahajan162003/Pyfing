@@ -1,0 +1,23 @@
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# IDE configurations
+.vscode/
+.idea/
+
+# Temporary directories and debug outputs
+tmp/
+*.tmp
+
+# Large model files exceeding GitHub's 100MB limit
+# (See docs/model_sources.md for reproduction instructions)
+assets/models/u2net_320x320_float32.tflite

@@ -1,0 +1,34 @@
+{
+  "luminance": 228.58,
+  "enhancement": "histogram_equalization",
+  "segmented_fraction": 0.2112,
+  "output_width": 6144,
+  "output_height": 8192,
+  "image_id": "IMG_20261106_160115",
+  "source_photo": "D:\\pyfing_SBMEX\\liveness\\IMG_20261106_160115.jpg",
+  "original_size": [
+    6144,
+    8192
+  ],
+  "processed_size": [
+    6144,
+    8192
+  ],
+  "seconds": 2.651,
+  "slap_normalize": false,
+  "model_provenance": "public equivalent of our team's model (may differ)",
+  "u2net_model": "public equivalent of our team's model (may differ)",
+  "zero_dce_model": "public equivalent of our team's model (may differ)",
+  "black_pixel_fraction_inside_mask": 0.3442524773026052,
+  "ridge_period": {
+    "block_size": 64,
+    "valid_blocks": 35,
+    "period_small_px": 7.490633420552356,
+    "fft_peak_strength": 34.39080407531342,
+    "scale_factor": 0.1953125,
+    "ridge_period_px": 38.35204311322806
+  },
+  "processed_file": "work\\processed\\IMG_20261106_160115.png",
+  "mask_file": "work\\masks\\IMG_20261106_160115.png",
+  "center_crop_file": "work\\debug\\IMG_20261106_160115_crop.png"
+}
